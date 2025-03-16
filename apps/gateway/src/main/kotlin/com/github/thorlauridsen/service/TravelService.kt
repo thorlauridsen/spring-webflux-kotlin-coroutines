@@ -3,6 +3,7 @@ package com.github.thorlauridsen.service
 import com.github.thorlauridsen.Flight
 import com.github.thorlauridsen.Hotel
 import com.github.thorlauridsen.RentalCar
+import com.github.thorlauridsen.config.GatewayConfig
 import com.github.thorlauridsen.dto.TravelDetailsDto
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
@@ -28,13 +29,17 @@ import java.time.OffsetDateTime
  *
  * The provider subproject exposes endpoints for hotels, flights, and rental cars.
  * The endpoints have simulated delays to demonstrate the benefits of using coroutines.
+ *
+ * @param client [WebClient] for making HTTP requests.
+ * @param gatewayConfig [GatewayConfig] configuration for the target URL.
  */
 @Service
-class TravelService {
+class TravelService(
+    private val client: WebClient,
+    private val gatewayConfig: GatewayConfig,
+) {
 
-    private val targetUrl = "http://localhost:8081"
     private val logger = LoggerFactory.getLogger(TravelService::class.java)
-    private val client = WebClient.create(targetUrl)
 
     /**
      * Fetch data from the target URL.
@@ -106,7 +111,7 @@ class TravelService {
      */
     suspend fun getAsync(): TravelDetailsDto {
         return measureExecutionTime {
-            logger.info("Fetching travel details asynchronously from $targetUrl")
+            logger.info("Fetching travel details asynchronously from ${gatewayConfig.targetUrl}")
             getDetailsAsync()
         }
     }
@@ -117,7 +122,7 @@ class TravelService {
      */
     suspend fun getSync(): TravelDetailsDto {
         return measureExecutionTime {
-            logger.info("Fetching travel details synchronously from $targetUrl")
+            logger.info("Fetching travel details synchronously from ${gatewayConfig.targetUrl}")
             getDetailsSync()
         }
     }
