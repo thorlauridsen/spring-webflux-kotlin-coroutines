@@ -11,6 +11,17 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
+/**
+ * Tests for HotelController.
+ *
+ * The test methods verify that the controller returns the expected hotels.
+ * The test methods use [WebTestClient] to make requests to the controller endpoints.
+ * [WebTestClient] has support for testing reactive web applications (Spring Boot Webflux).
+ * The tests are annotated with [Order] to specify the order in which they should run.
+ * Otherwise, the order of test execution is not guaranteed and the database state may change between tests.
+ *
+ * @param client [WebTestClient] bean.
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient
 class HotelControllerTest(@Autowired private val client: WebTestClient) {
