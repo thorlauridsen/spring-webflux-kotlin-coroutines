@@ -42,6 +42,7 @@ class TravelService {
      * @return A list of objects of type T.
      */
     private suspend inline fun <reified T> fetch(uri: String): List<T> {
+        logger.info("Executing request HTTP GET $uri")
         return client.get()
             .uri(uri)
             .retrieve()
@@ -67,18 +68,47 @@ class TravelService {
     }
 
     /**
+     * Get travel details synchronously.
+     * @return The travel details.
+     */
+    private suspend fun getDetailsSync(): TravelDetailsDto {
+        val hotels = fetch<Hotel>("/hotels")
+        val flights = fetch<Flight>("/flights")
+        val rentalCars = fetch<RentalCar>("/rentalcars")
+
+        return TravelDetailsDto(
+            hotels = hotels,
+            flights = flights,
+            rentalCars = rentalCars
+        )
+    }
+
+    /**
+     * Helper function to measure execution time of a suspend function.
+     * @param suspendFunction The suspend function to execute and measure.
+     * @return The result of the function execution.
+     */
+    private suspend fun <T> measureExecutionTime(
+        suspendFunction: suspend () -> T,
+    ): T {
+        val start = OffsetDateTime.now()
+        val result = suspendFunction()
+
+        val duration = Duration.between(start, OffsetDateTime.now())
+        logger.info("Fetched travel details in ${duration.toMillis()} ms")
+
+        return result
+    }
+
+    /**
      * Get travel details asynchronously.
      * @return The travel details.
      */
     suspend fun getAsync(): TravelDetailsDto {
-        logger.info("Fetching travel details asynchronously from $targetUrl")
-        val start = OffsetDateTime.now()
-
-        val travelDetails = getDetailsAsync()
-        val duration = Duration.between(start, OffsetDateTime.now())
-        logger.info("Fetched travel details asynchronously in ${duration.toMillis()} ms")
-
-        return travelDetails
+        return measureExecutionTime {
+            logger.info("Fetching travel details asynchronously from $targetUrl")
+            getDetailsAsync()
+        }
     }
 
     /**
@@ -86,20 +116,9 @@ class TravelService {
      * @return The travel details.
      */
     suspend fun getSync(): TravelDetailsDto {
-        logger.info("Fetching travel details synchronously from $targetUrl")
-        val start = OffsetDateTime.now()
-
-        val hotels = fetch<Hotel>("/hotels")
-        val flights = fetch<Flight>("/flights")
-        val rentalCars = fetch<RentalCar>("/rentalcars")
-
-        val duration = Duration.between(start, OffsetDateTime.now())
-        logger.info("Fetched travel details synchronously in ${duration.toMillis()} ms")
-
-        return TravelDetailsDto(
-            hotels = hotels,
-            flights = flights,
-            rentalCars = rentalCars
-        )
+        return measureExecutionTime {
+            logger.info("Fetching travel details synchronously from $targetUrl")
+            getDetailsSync()
+        }
     }
 }
