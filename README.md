@@ -320,3 +320,8 @@ persistence
 
 model has no dependencies
 ```
+
+## Meta
+
+This project has been created with the sample code structure from 
+[thorlauridsen/spring-boot-kotlin-sample](https://github.com/thorlauridsen/spring-boot-kotlin-sample)
