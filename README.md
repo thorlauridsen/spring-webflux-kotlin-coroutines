@@ -1,4 +1,4 @@
-# Spring Boot Kotlin async sample
+# Spring Boot Webflux + Kotlin Coroutines
 
 This is a sample project using 
 [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) and
