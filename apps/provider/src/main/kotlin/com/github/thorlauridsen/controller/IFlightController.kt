@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 const val FLIGHT_BASE_ENDPOINT = "/flights"
 
+/**
+ * Interface for [FlightController].
+ * This interface defines the endpoints for the flight controller.
+ * It also defines useful information for generating the Swagger documentation.
+ */
 @Tag(name = "Flight Controller", description = "API for managing flights")
 @RequestMapping(FLIGHT_BASE_ENDPOINT)
 interface IFlightController {
