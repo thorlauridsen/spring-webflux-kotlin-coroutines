@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 const val RENTAL_CAR_BASE_ENDPOINT = "/rentalcars"
 
+/**
+ * Interface for [RentalCarController].
+ * This interface defines the endpoints for the rental car controller.
+ * It also defines useful information for generating the Swagger documentation.
+ */
 @Tag(name = "Rental Car Controller", description = "API for managing rental cars")
 @RequestMapping(RENTAL_CAR_BASE_ENDPOINT)
 interface IRentalCarController {
