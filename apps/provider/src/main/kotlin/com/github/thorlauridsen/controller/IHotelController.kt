@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 const val HOTEL_BASE_ENDPOINT = "/hotels"
 
+/**
+ * Interface for [HotelController].
+ * This interface defines the endpoints for the hotel controller.
+ * It also defines useful information for generating the Swagger documentation.
+ */
 @Tag(name = "Hotel Controller", description = "API for managing hotels")
 @RequestMapping(HOTEL_BASE_ENDPOINT)
 interface IHotelController {
