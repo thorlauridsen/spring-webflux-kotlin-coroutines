@@ -1,27 +1,174 @@
-# Spring Boot Kotlin sample project
+# Spring Boot Kotlin async sample
 
-This is a sample project for how you can set up a 
-multi-project Gradle build using Spring Boot and Kotlin.
-You can copy or fork this project to quickly set up a 
-new project with the same multi-project Gradle structure.
+This is a sample project using 
+[Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) and
+[Spring Webflux](https://docs.spring.io/spring-framework/reference/web/webflux.html) 
+while utilizing async/await to optimize performance when executing multiple requests
+to one or more remote services. This is useful in the case where the
+data from one request is not required to continue the next request.
 
-This project consists of a runnable REST API using Spring Boot Web MVC.
+## Scenario
+
+Imagine you are building a service which needs to present traveling/vacation offers to a client.
+This could for example include offers such as:
+- Flights
+- Hotels
+- Rental cars
+
+You find a third-party service provider for each type of offer but you are forced
+to send 3 requests to fetch all the relevant offers before returning it to the client.
+The issue here is that with synchronous code, you would have to execute one
+request at a time which could result in a slow response time.
+
+## Services
+
+### Provider REST API
+The **provider** subproject is independently runnable and will spin up a Spring Boot REST API.
+This service includes the following endpoints:
+- `GET /flights`
+- `GET /hotels`
+- `GET /rentalcars`
+
+Each endpoint, will return the full list of available entities from the database.
+An artificial delay of 2000 milliseconds has been implemented for each endpoint. 
+The purpose of this is to showcase the performance benefits when 
+correctly using Kotlin Coroutines and async/await.
+
+The **provider** subproject implements both the **model** and **persistence** subprojects. 
+It can interact with an in-memory [H2database](https://github.com/h2database/h2database) 
+using [Exposed](https://github.com/JetBrains/Exposed). 
+Additionally, it uses [Liquibase](https://github.com/liquibase/liquibase) 
+for database changelogs, where dummy data has been added to the database.
+
+### Gateway REST API
+The **gateway** subproject is independently runnable and will spin up a Spring Boot REST API.
+This service includes the following endpoints:
+- `GET /travel/async`
+- `GET /travel/sync`
+
+For this project, we use Spring Webflux and Kotlin Coroutines so we can achieve optimized performance.
+
+This means we need the following Gradle dependencies in our local version catalog
+[local.versions.toml](gradle/local.versions.toml)
+```toml
+[versions]
+coroutines = "1.10.1"
+springboot = "3.4.3"
+springdoc = "2.8.5"
+
+[libraries]
+springboot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springboot" }
+springboot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "springboot" }
+
+kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlin-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "coroutines" }
+
+springdoc-openapi-starter-webflux = { module = "org.springdoc:springdoc-openapi-starter-webflux-ui", version.ref = "springdoc" }
+```
+
+Spring Webflux and Kotlin Coroutines Reactor allows us to set controller functions as 
+suspending functions. This means that every time a request is sent to an endpoint,
+a coroutine will be launched for the specific request. This allows us to be
+within a coroutine scope when executing requests. Additionally, Spring Webflux
+provides [WebClient](https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html)
+which is a HTTP client based on Reactor to support asynchronous code.
+
+The code below from [TravelService.kt](/apps\gateway/src/main/kotlin/com/github/thorlauridsen/service/TravelService.kt)
+showcases how to use `async {}` and `.await()` to execute 3 requests simultaneously.
+
+```kotlin
+private val client = WebClient.create("http://localhost:8081")
+
+private suspend inline fun <reified T> fetch(uri: String): List<T> {
+    return client.get()
+        .uri(uri)
+        .retrieve()
+        .awaitBody()
+}
+
+private suspend fun getDetailsAsync(): TravelDetailsDto {
+    return coroutineScope {
+        val hotelsDeferred = async { fetch<Hotel>("/hotels") }
+        val flightsDeferred = async { fetch<Flight>("/flights") }
+        val rentalCarsDeferred = async { fetch<RentalCar>("/rentalcars") }
+
+        return@coroutineScope TravelDetailsDto(
+            hotels = hotelsDeferred.await(),
+            flights = flightsDeferred.await(),
+            rentalCars = rentalCarsDeferred.await()
+        )
+    }
+}
+```
+
+The benefit is that we do not have to wait for one request to finish
+before starting the next request. The combined response time will be
+approximately the same duration as the slowest of the three requests.
+
+You can see an example of how the data is 
+fetched synchronously in the code below:
+```kotlin
+private suspend fun getDetailsSync(): TravelDetailsDto {
+    val hotels = fetch<Hotel>("/hotels")
+    val flights = fetch<Flight>("/flights")
+    val rentalCars = fetch<RentalCar>("/rentalcars")
+
+    return TravelDetailsDto(
+        hotels = hotels,
+        flights = flights,
+        rentalCars = rentalCars
+    )
+}
+```
+The project has Gradle depedencies for Kotlin Coroutines and
+Spring Webflux which allows us to set the controller functions
+to suspending functions. However, this is not enough in itself
+to achieve optimized performance. If we do not use async/await
+it will execute one request at a time.
+
+This separate function has been added to showcase the differences 
+in performance when running synchronous and asynchronous code.
+Example logs can be seen below:
+
+```yaml
+14:16:45.736 : Fetching travel details synchronously from http://localhost:8081
+14:16:45.736 : Executing request HTTP GET /hotels
+14:16:48.413 : Executing request HTTP GET /flights
+14:16:50.468 : Executing request HTTP GET /rentalcars
+14:16:52.513 : Fetched travel details in 6776 ms
+14:16:56.217 : Fetching travel details asynchronously from http://localhost:8081
+14:16:56.225 : Executing request HTTP GET /hotels
+14:16:56.227 : Executing request HTTP GET /flights
+14:16:56.229 : Executing request HTTP GET /rentalcars
+14:16:58.257 : Fetched travel details in 2041 ms
+```
+
+When fetching data from **n** independent external services:
+
+#### Total execution time
+- **Synchronous code**: Sum of individual request times `T_sync = t₁ + t₂ + ... + tₙ`
+- **Asynchronous code**: Duration of the slowest request `T_async = max(t₁, t₂, ..., tₙ)`
 
 ## Usage
-Clone the project to your local machine, go to the root directory and use:
+Clone the project to your local machine, go to the root directory and use
+these two commands in separate terminals.
 ```
-./gradlew bootRun
+./gradlew gateway:bootRun
 ```
+```
+./gradlew provider:bootRun
+```
+You can also use IntelliJ IDEA to easily run the two services at once.
 
 ### Swagger Documentation
-Once the system is running, navigate to http://localhost:8080/ 
-to view the Swagger documentation.
+Once both services is running, you can navigate to http://localhost:8080/ 
+and http://localhost:8081/ to view the Swagger documentation for each service.
 
 ## Technology
 - [JDK21](https://openjdk.org/projects/jdk/21/) - Latest JDK with long-term support 
 - [Kotlin](https://github.com/JetBrains/kotlin) - Programming language with Java interoperability
 - [Gradle](https://github.com/gradle/gradle) - Used for compilation, building, testing and dependency management
-- [Spring Boot (Web MVC)](https://github.com/spring-projects/spring-boot) - For creating REST APIs
+- [Spring Boot (Webflux)](https://github.com/spring-projects/spring-boot) - For creating reactive REST APIs
 - [Jackson](https://github.com/FasterXML/jackson-module-kotlin) - Provides a Kotlin module for automatic JSON serialization and deserialization
 - [SpringDoc](https://github.com/springdoc/springdoc-openapi) - Provides Swagger documentation for REST APIs
 - [Exposed](https://github.com/JetBrains/Exposed) - Lightweight Kotlin SQL library to interact with a database
@@ -111,7 +258,9 @@ root
 │─ build.gradle.kts
 │─ settings.gradle.kts
 │─ apps
-│   └─ api
+│   └─ gateway
+│       └─ build.gradle.kts
+│   └─ provider
 │       └─ build.gradle.kts
 │─ modules
 │   ├─ model
@@ -125,8 +274,9 @@ for which subproject. Each subproject should only use exactly the dependencies
 that they need.
 
 Subprojects located under [apps](apps) are runnable, so this means we can 
-run the **api** project to spin up a Spring Boot REST API. We can add more 
-subprojects under [apps](apps) to create additional runnable microservices.
+run the **gateway** or **provider** project to spin up a Spring Boot REST API. 
+We can add more subprojects under [apps](apps) to create additional 
+runnable microservices.
 
 Subprojects located under [modules](modules) are not independently runnable. 
 The subprojects are used to structure code into various layers. The **model** 
@@ -158,7 +308,10 @@ dependencies {
 This essentially allows us to define this structure:
 
 ```
-api  
+gateway   
+└─ model
+
+provider  
 │─ model  
 └─ persistence
 
