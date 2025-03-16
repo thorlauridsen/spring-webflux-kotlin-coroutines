@@ -25,7 +25,7 @@ import java.time.OffsetDateTime
  *
  * The data is fetched asynchronously using coroutines and synchronously without coroutines.
  * Both functions will measure the time it takes to fetch the data.
- * 
+ *
  * The provider subproject exposes endpoints for hotels, flights, and rental cars.
  * The endpoints have simulated delays to demonstrate the benefits of using coroutines.
  */
@@ -37,14 +37,23 @@ class TravelService {
     private val client = WebClient.create(targetUrl)
 
     /**
+     * Fetch data from the target URL.
+     * @param uri The URI to fetch data from.
+     * @return A list of objects of type T.
+     */
+    private suspend inline fun <reified T> fetch(uri: String): List<T> {
+        return client.get()
+            .uri(uri)
+            .retrieve()
+            .awaitBody()
+    }
+
+    /**
      * Get travel details asynchronously.
      * @return The travel details.
      */
-    suspend fun getAsync(): TravelDetailsDto {
-        logger.info("Fetching travel details asynchronously from $targetUrl")
-        val start = OffsetDateTime.now()
-
-        val travelDetails = coroutineScope {
+    private suspend fun getDetailsAsync(): TravelDetailsDto {
+        return coroutineScope {
             val hotelsDeferred = async { fetch<Hotel>("/hotels") }
             val flightsDeferred = async { fetch<Flight>("/flights") }
             val rentalCarsDeferred = async { fetch<RentalCar>("/rentalcars") }
@@ -55,6 +64,17 @@ class TravelService {
                 rentalCars = rentalCarsDeferred.await()
             )
         }
+    }
+
+    /**
+     * Get travel details asynchronously.
+     * @return The travel details.
+     */
+    suspend fun getAsync(): TravelDetailsDto {
+        logger.info("Fetching travel details asynchronously from $targetUrl")
+        val start = OffsetDateTime.now()
+
+        val travelDetails = getDetailsAsync()
         val duration = Duration.between(start, OffsetDateTime.now())
         logger.info("Fetched travel details asynchronously in ${duration.toMillis()} ms")
 
@@ -82,15 +102,4 @@ class TravelService {
             rentalCars = rentalCars
         )
     }
-
-    /**
-     * Fetch data from the target URL.
-     * @param uri The URI to fetch data from.
-     * @return A list of objects of type T.
-     */
-    private suspend inline fun <reified T> fetch(uri: String): List<T> =
-        client.get()
-            .uri(uri)
-            .retrieve()
-            .awaitBody()
 }
