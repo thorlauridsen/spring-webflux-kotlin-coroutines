@@ -130,7 +130,7 @@ This separate function has been added to showcase the differences
 in performance when running synchronous and asynchronous code.
 Example logs can be seen below:
 
-```yaml
+```
 14:16:45.736 : Fetching travel details synchronously from http://localhost:8081
 14:16:45.736 : Executing request HTTP GET /hotels
 14:16:48.413 : Executing request HTTP GET /flights
