@@ -10,7 +10,6 @@ updates:
       prefix: "build: "
     pull-request-branch-name:
       separator: "-"
-    versioning-strategy: "auto"
     registries:
       - maven-central
       - gradle-plugin-portal
