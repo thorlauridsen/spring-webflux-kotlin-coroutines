@@ -22,7 +22,7 @@ kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", 
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlin-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "coroutines" }
 
-# SpringDoc provides swagger docs with support for Spring WebFlux
+# Springdoc provides swagger docs with support for Spring WebFlux
 springdoc-openapi-starter-webflux = { module = "org.springdoc:springdoc-openapi-starter-webflux-ui", version.ref = "springdoc" }
 
 # JetBrains Exposed provides a lightweight Kotlin SQL library

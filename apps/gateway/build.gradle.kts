@@ -18,7 +18,7 @@ dependencies {
 	implementation(local.kotlin.coroutines.reactor)
 	testImplementation(local.kotlin.coroutines.test)
 
-	// SpringDoc for swagger docs supporting Spring Webflux
+	// Springdoc for swagger docs supporting Spring WebFlux
 	implementation(local.springdoc.openapi.starter.webflux)
 
 	// FasterXML Jackson module for Kotlin support

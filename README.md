@@ -46,7 +46,7 @@ This service includes the following endpoints:
 - `GET /travel/async`
 - `GET /travel/sync`
 
-For this project, we use Spring Webflux and Kotlin Coroutines so we can achieve optimized performance.
+For this project, we use Spring WebFlux and Kotlin Coroutines so we can achieve optimized performance.
 
 This means we need the following Gradle dependencies in our local version catalog
 [local.versions.toml](gradle/local.versions.toml)
@@ -66,10 +66,10 @@ kotlin-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines
 springdoc-openapi-starter-webflux = { module = "org.springdoc:springdoc-openapi-starter-webflux-ui", version.ref = "springdoc" }
 ```
 
-Spring Webflux and Kotlin Coroutines Reactor allows us to set controller functions as 
+Spring WebFlux and Kotlin Coroutines Reactor allows us to set controller functions as 
 suspending functions. This means that every time a request is sent to an endpoint,
 a coroutine will be launched for the specific request. This allows us to be
-within a coroutine scope when executing requests. Additionally, Spring Webflux
+within a coroutine scope when executing requests. Additionally, Spring WebFlux
 provides [WebClient](https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html)
 which is a HTTP client based on Reactor to support asynchronous code.
 
@@ -121,7 +121,7 @@ private suspend fun getDetailsSync(): TravelDetailsDto {
 }
 ```
 The project has Gradle depedencies for Kotlin Coroutines and
-Spring Webflux which allows us to set the controller functions
+Spring WebFlux which allows us to set the controller functions
 to suspending functions. However, this is not enough in itself
 to achieve optimized performance. If we do not use async/await
 it will execute one request at a time.
@@ -171,7 +171,7 @@ and http://localhost:8081/ to view the Swagger documentation for each service.
 - [Spring WebFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html) - For creating reactive REST APIs
 - [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) - For asynchronous programming
 - [Jackson](https://github.com/FasterXML/jackson-module-kotlin) - Provides a Kotlin module for automatic JSON serialization and deserialization
-- [SpringDoc](https://github.com/springdoc/springdoc-openapi) - Provides Swagger documentation for REST APIs
+- [Springdoc](https://github.com/springdoc/springdoc-openapi) - Provides Swagger documentation for REST APIs
 - [Exposed](https://github.com/JetBrains/Exposed) - Lightweight Kotlin SQL library to interact with a database
 - [H2database](https://github.com/h2database/h2database) - Provides an in-memory database for simple local testing
 - [Liquibase](https://github.com/liquibase/liquibase) - Used to manage database schema changelogs
