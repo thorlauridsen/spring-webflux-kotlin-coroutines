@@ -1,8 +1,8 @@
-# Spring Boot Webflux + Kotlin Coroutines
+# Spring WebFlux + Kotlin Coroutines
 
 This is a sample project using 
 [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) and
-[Spring Webflux](https://docs.spring.io/spring-framework/reference/web/webflux.html) 
+[Spring WebFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html) 
 while utilizing async/await to optimize performance when executing multiple requests
 to one or more remote services. This is useful in the case where the
 data from one request is not required to continue the next request.
@@ -168,7 +168,8 @@ and http://localhost:8081/ to view the Swagger documentation for each service.
 - [JDK21](https://openjdk.org/projects/jdk/21/) - Latest JDK with long-term support 
 - [Kotlin](https://github.com/JetBrains/kotlin) - Programming language with Java interoperability
 - [Gradle](https://github.com/gradle/gradle) - Used for compilation, building, testing and dependency management
-- [Spring Boot (Webflux)](https://github.com/spring-projects/spring-boot) - For creating reactive REST APIs
+- [Spring WebFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html) - For creating reactive REST APIs
+- [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) - For asynchronous programming
 - [Jackson](https://github.com/FasterXML/jackson-module-kotlin) - Provides a Kotlin module for automatic JSON serialization and deserialization
 - [SpringDoc](https://github.com/springdoc/springdoc-openapi) - Provides Swagger documentation for REST APIs
 - [Exposed](https://github.com/JetBrains/Exposed) - Lightweight Kotlin SQL library to interact with a database
