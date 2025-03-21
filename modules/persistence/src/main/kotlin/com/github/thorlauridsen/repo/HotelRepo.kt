@@ -19,7 +19,7 @@ import java.util.UUID
 @Repository
 class HotelRepo {
 
-    private val logger = LoggerFactory.getLogger(HotelRepo::class.java)
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     /**
      * Save a hotel to the database.
