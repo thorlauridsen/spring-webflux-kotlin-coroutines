@@ -1,5 +1,6 @@
 package com.github.thorlauridsen
 
+import com.github.thorlauridsen.model.Flight
 import com.github.thorlauridsen.controller.FLIGHT_BASE_ENDPOINT
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test

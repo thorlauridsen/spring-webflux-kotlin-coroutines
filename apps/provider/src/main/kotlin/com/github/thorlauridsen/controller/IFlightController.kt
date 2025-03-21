@@ -1,6 +1,6 @@
 package com.github.thorlauridsen.controller
 
-import com.github.thorlauridsen.Flight
+import com.github.thorlauridsen.model.Flight
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag

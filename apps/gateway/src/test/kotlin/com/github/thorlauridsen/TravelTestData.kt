@@ -1,5 +1,8 @@
 package com.github.thorlauridsen
 
+import com.github.thorlauridsen.model.Flight
+import com.github.thorlauridsen.model.Hotel
+import com.github.thorlauridsen.model.RentalCar
 import com.github.thorlauridsen.dto.TravelDetailsDto
 
 /**

@@ -1,7 +1,7 @@
 package com.github.thorlauridsen.service
 
-import com.github.thorlauridsen.Hotel
-import com.github.thorlauridsen.repo.HotelRepo
+import com.github.thorlauridsen.model.Hotel
+import com.github.thorlauridsen.persistence.repo.HotelRepo
 import kotlinx.coroutines.delay
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service

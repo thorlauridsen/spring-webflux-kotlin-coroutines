@@ -1,7 +1,7 @@
 package com.github.thorlauridsen.service
 
-import com.github.thorlauridsen.RentalCar
-import com.github.thorlauridsen.repo.RentalCarRepo
+import com.github.thorlauridsen.model.RentalCar
+import com.github.thorlauridsen.persistence.repo.RentalCarRepo
 import kotlinx.coroutines.delay
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service

@@ -1,6 +1,6 @@
 package com.github.thorlauridsen.controller
 
-import com.github.thorlauridsen.RentalCar
+import com.github.thorlauridsen.model.RentalCar
 import com.github.thorlauridsen.service.RentalCarService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller

@@ -1,4 +1,4 @@
-package com.github.thorlauridsen
+package com.github.thorlauridsen.model
 
 /**
  * Model data class representing a rental car.

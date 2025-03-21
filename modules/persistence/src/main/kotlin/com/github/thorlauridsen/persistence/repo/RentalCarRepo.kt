@@ -1,7 +1,7 @@
-package com.github.thorlauridsen.repo
+package com.github.thorlauridsen.persistence.repo
 
-import com.github.thorlauridsen.RentalCar
-import com.github.thorlauridsen.table.RentalCarTable
+import com.github.thorlauridsen.model.RentalCar
+import com.github.thorlauridsen.persistence.table.RentalCarTable
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insertAndGetId
 import org.jetbrains.exposed.sql.selectAll

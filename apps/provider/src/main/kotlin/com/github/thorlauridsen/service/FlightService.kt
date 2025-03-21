@@ -1,7 +1,7 @@
 package com.github.thorlauridsen.service
 
-import com.github.thorlauridsen.Flight
-import com.github.thorlauridsen.repo.FlightRepo
+import com.github.thorlauridsen.model.Flight
+import com.github.thorlauridsen.persistence.repo.FlightRepo
 import kotlinx.coroutines.delay
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
