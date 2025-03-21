@@ -1,7 +1,7 @@
-package com.github.thorlauridsen.repo
+package com.github.thorlauridsen.persistence.repo
 
-import com.github.thorlauridsen.Flight
-import com.github.thorlauridsen.table.FlightTable
+import com.github.thorlauridsen.model.Flight
+import com.github.thorlauridsen.persistence.table.FlightTable
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insertAndGetId
 import org.jetbrains.exposed.sql.selectAll

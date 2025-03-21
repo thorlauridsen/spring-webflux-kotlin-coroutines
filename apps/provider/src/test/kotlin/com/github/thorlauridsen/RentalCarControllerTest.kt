@@ -1,5 +1,6 @@
 package com.github.thorlauridsen
 
+import com.github.thorlauridsen.model.RentalCar
 import com.github.thorlauridsen.controller.RENTAL_CAR_BASE_ENDPOINT
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test

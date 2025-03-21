@@ -1,6 +1,6 @@
 package com.github.thorlauridsen.controller
 
-import com.github.thorlauridsen.Flight
+import com.github.thorlauridsen.model.Flight
 import com.github.thorlauridsen.service.FlightService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller

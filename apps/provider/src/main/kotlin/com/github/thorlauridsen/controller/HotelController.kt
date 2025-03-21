@@ -1,6 +1,6 @@
 package com.github.thorlauridsen.controller
 
-import com.github.thorlauridsen.Hotel
+import com.github.thorlauridsen.model.Hotel
 import com.github.thorlauridsen.service.HotelService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller

@@ -1,8 +1,8 @@
 package com.github.thorlauridsen.dto
 
-import com.github.thorlauridsen.Flight
-import com.github.thorlauridsen.Hotel
-import com.github.thorlauridsen.RentalCar
+import com.github.thorlauridsen.model.Flight
+import com.github.thorlauridsen.model.Hotel
+import com.github.thorlauridsen.model.RentalCar
 
 /**
  * Data transfer object representing the details of travel options

@@ -1,8 +1,8 @@
 package com.github.thorlauridsen.service
 
-import com.github.thorlauridsen.Flight
-import com.github.thorlauridsen.Hotel
-import com.github.thorlauridsen.RentalCar
+import com.github.thorlauridsen.model.Flight
+import com.github.thorlauridsen.model.Hotel
+import com.github.thorlauridsen.model.RentalCar
 import com.github.thorlauridsen.config.GatewayConfig
 import com.github.thorlauridsen.dto.TravelDetailsDto
 import kotlinx.coroutines.async
