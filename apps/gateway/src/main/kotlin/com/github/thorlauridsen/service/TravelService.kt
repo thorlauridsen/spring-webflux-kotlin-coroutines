@@ -39,7 +39,7 @@ class TravelService(
     private val gatewayConfig: GatewayConfig,
 ) {
 
-    private val logger = LoggerFactory.getLogger(TravelService::class.java)
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     /**
      * Fetch data from the target URL.

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service
 @Service
 class FlightService(private val flightRepo: FlightRepo) {
 
-    private val logger = LoggerFactory.getLogger(FlightService::class.java)
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     /**
      * Save a flight.

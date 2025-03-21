@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service
 @Service
 class HotelService(private val hotelRepo: HotelRepo) {
 
-    private val logger = LoggerFactory.getLogger(HotelService::class.java)
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     /**
      * Save a hotel.

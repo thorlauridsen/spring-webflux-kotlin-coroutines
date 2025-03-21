@@ -19,7 +19,7 @@ import java.util.UUID
 @Repository
 class FlightRepo {
 
-    private val logger = LoggerFactory.getLogger(FlightRepo::class.java)
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     /**
      * Save a flight to the database.

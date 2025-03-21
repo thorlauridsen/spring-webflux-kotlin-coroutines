@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service
 @Service
 class RentalCarService(private val rentalCarRepo: RentalCarRepo) {
 
-    private val logger = LoggerFactory.getLogger(RentalCarService::class.java)
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     /**
      * Save a rental car.

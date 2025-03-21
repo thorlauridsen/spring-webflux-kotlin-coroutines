@@ -19,7 +19,7 @@ import java.util.UUID
 @Repository
 class RentalCarRepo {
 
-    private val logger = LoggerFactory.getLogger(RentalCarRepo::class.java)
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     /**
      * Save a rental car to the database.
