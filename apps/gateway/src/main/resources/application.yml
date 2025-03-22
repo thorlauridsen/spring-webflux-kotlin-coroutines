@@ -9,4 +9,4 @@ springdoc:
     path: /
 gateway:
   settings:
-    targetUrl: http://localhost:8081
+    targetUrl: ${GATEWAY_TARGET_URL:http://localhost:8081}
