@@ -158,7 +158,15 @@ these two commands in separate terminals.
 ```
 ./gradlew provider:bootRun
 ```
+The provider service will be running with an in-memory H2 database.
 You can also use IntelliJ IDEA to easily run the two services at once.
+
+### Docker Compose
+To run the project with [Docker Compose](https://docs.docker.com/compose/), go to the root directory and use:
+```
+docker-compose up -d
+```
+This will run the two services at once where the provider service is using a PostgreSQL database.
 
 ### Swagger Documentation
 Once both services is running, you can navigate to http://localhost:8080/ 
@@ -173,6 +181,7 @@ and http://localhost:8081/ to view the Swagger documentation for each service.
 - [Jackson](https://github.com/FasterXML/jackson-module-kotlin) - Provides a Kotlin module for automatic JSON serialization and deserialization
 - [Springdoc](https://github.com/springdoc/springdoc-openapi) - Provides Swagger documentation for REST APIs
 - [Exposed](https://github.com/JetBrains/Exposed) - Lightweight Kotlin SQL library to interact with a database
+- [PostgreSQL](https://www.postgresql.org/) - Open-source relational database
 - [H2database](https://github.com/h2database/h2database) - Provides an in-memory database for simple local testing
 - [Liquibase](https://github.com/liquibase/liquibase) - Used to manage database schema changelogs
 
