@@ -1,5 +1,6 @@
 package com.github.thorlauridsen.persistence.repo
 
+import com.github.thorlauridsen.model.IRentalCarRepo
 import com.github.thorlauridsen.model.RentalCar
 import com.github.thorlauridsen.persistence.table.RentalCarTable
 import org.jetbrains.exposed.sql.ResultRow

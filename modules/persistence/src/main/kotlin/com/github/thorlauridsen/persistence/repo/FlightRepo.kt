@@ -1,6 +1,7 @@
 package com.github.thorlauridsen.persistence.repo
 
 import com.github.thorlauridsen.model.Flight
+import com.github.thorlauridsen.model.IFlightRepo
 import com.github.thorlauridsen.persistence.table.FlightTable
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insertAndGetId

@@ -1,6 +1,4 @@
-package com.github.thorlauridsen.persistence.repo
-
-import com.github.thorlauridsen.model.Hotel
+package com.github.thorlauridsen.model
 
 /**
  * Flight repository interface.

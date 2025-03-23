@@ -1,6 +1,7 @@
 package com.github.thorlauridsen.persistence.repo
 
 import com.github.thorlauridsen.model.Hotel
+import com.github.thorlauridsen.model.IHotelRepo
 import com.github.thorlauridsen.persistence.table.HotelTable
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insertAndGetId
