@@ -1,7 +1,7 @@
 package com.github.thorlauridsen.service
 
 import com.github.thorlauridsen.model.Hotel
-import com.github.thorlauridsen.persistence.repo.HotelRepo
+import com.github.thorlauridsen.persistence.repo.IHotelRepo
 import kotlinx.coroutines.delay
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service
  * - Saving hotels.
  * - Fetching hotels.
  *
- * @param hotelRepo Exposed [HotelRepo] to interact with the database.
+ * @param hotelRepo Exposed [IHotelRepo] to interact with the database.
  */
 @Service
-class HotelService(private val hotelRepo: HotelRepo) {
+class HotelService(private val hotelRepo: IHotelRepo) {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 

@@ -1,7 +1,7 @@
 package com.github.thorlauridsen.service
 
 import com.github.thorlauridsen.model.Flight
-import com.github.thorlauridsen.persistence.repo.FlightRepo
+import com.github.thorlauridsen.persistence.repo.IFlightRepo
 import kotlinx.coroutines.delay
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service
  * - Saving flights.
  * - Fetching flights.
  *
- * @param flightRepo Exposed [FlightRepo] to interact with the database.
+ * @param flightRepo Exposed [IFlightRepo] to interact with the database.
  */
 @Service
-class FlightService(private val flightRepo: FlightRepo) {
+class FlightService(private val flightRepo: IFlightRepo) {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 

@@ -17,7 +17,7 @@ import java.util.UUID
  * - Fetching flights from the database.
  */
 @Repository
-class FlightRepo {
+class FlightRepo : IFlightRepo {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 
@@ -27,7 +27,7 @@ class FlightRepo {
      * @throws IllegalStateException if flight not found in database after saving.
      * @return [Flight] retrieved from database.
      */
-    fun save(flight: Flight): Flight {
+    override fun save(flight: Flight): Flight {
         return transaction {
             logger.info("Saving flight $flight to database...")
             val id = FlightTable.insertAndGetId {
@@ -46,7 +46,7 @@ class FlightRepo {
      * Get all flights from the database.
      * @return List of [Flight]
      */
-    fun findAll(): List<Flight> {
+    override fun findAll(): List<Flight> {
         logger.info("Retrieving all flights from database...")
 
         return transaction {

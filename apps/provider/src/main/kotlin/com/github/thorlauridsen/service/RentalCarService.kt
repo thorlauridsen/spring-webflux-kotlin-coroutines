@@ -1,7 +1,7 @@
 package com.github.thorlauridsen.service
 
 import com.github.thorlauridsen.model.RentalCar
-import com.github.thorlauridsen.persistence.repo.RentalCarRepo
+import com.github.thorlauridsen.persistence.repo.IRentalCarRepo
 import kotlinx.coroutines.delay
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service
  * - Saving rental cars.
  * - Fetching rental cars.
  *
- * @param rentalCarRepo Exposed [RentalCarRepo] to interact with the database.
+ * @param rentalCarRepo Exposed [IRentalCarRepo] to interact with the database.
  */
 @Service
-class RentalCarService(private val rentalCarRepo: RentalCarRepo) {
+class RentalCarService(private val rentalCarRepo: IRentalCarRepo) {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 

@@ -17,7 +17,7 @@ import java.util.UUID
  * - Fetching rental cars from the database.
  */
 @Repository
-class RentalCarRepo {
+class RentalCarRepo : IRentalCarRepo {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 
@@ -27,7 +27,7 @@ class RentalCarRepo {
      * @throws IllegalStateException if rental car not found in database after saving.
      * @return [RentalCar] retrieved from database.
      */
-    fun save(rentalCar: RentalCar): RentalCar {
+    override fun save(rentalCar: RentalCar): RentalCar {
         return transaction {
             logger.info("Saving rental car $rentalCar to database...")
             val id = RentalCarTable.insertAndGetId {
@@ -45,7 +45,7 @@ class RentalCarRepo {
      * Get all rental cars from the database.
      * @return List of [RentalCar]
      */
-    fun findAll(): List<RentalCar> {
+    override fun findAll(): List<RentalCar> {
         logger.info("Retrieving all rental cars from database...")
 
         return transaction {

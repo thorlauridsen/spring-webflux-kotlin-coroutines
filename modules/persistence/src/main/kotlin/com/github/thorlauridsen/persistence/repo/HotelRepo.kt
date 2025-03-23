@@ -17,7 +17,7 @@ import java.util.UUID
  * - Fetching hotels from the database.
  */
 @Repository
-class HotelRepo {
+class HotelRepo : IHotelRepo {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 
@@ -27,7 +27,7 @@ class HotelRepo {
      * @throws IllegalStateException if hotel not found in database after saving.
      * @return [Hotel] retrieved from database.
      */
-    fun save(hotel: Hotel): Hotel {
+    override fun save(hotel: Hotel): Hotel {
         return transaction {
             logger.info("Saving hotel $hotel to database...")
             val id = HotelTable.insertAndGetId {
@@ -45,7 +45,7 @@ class HotelRepo {
      * Get all hotels from the database.
      * @return List of [Hotel]
      */
-    fun findAll(): List<Hotel> {
+    override fun findAll(): List<Hotel> {
         logger.info("Retrieving all hotels from database...")
 
         return transaction {
