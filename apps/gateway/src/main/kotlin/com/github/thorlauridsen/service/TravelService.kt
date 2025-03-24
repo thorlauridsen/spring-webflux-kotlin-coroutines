@@ -4,7 +4,7 @@ import com.github.thorlauridsen.model.Flight
 import com.github.thorlauridsen.model.Hotel
 import com.github.thorlauridsen.model.RentalCar
 import com.github.thorlauridsen.config.GatewayConfig
-import com.github.thorlauridsen.dto.TravelDetailsDto
+import com.github.thorlauridsen.model.TravelDetails
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import org.slf4j.LoggerFactory
@@ -58,13 +58,13 @@ class TravelService(
      * Get travel details asynchronously.
      * @return The travel details.
      */
-    private suspend fun getDetailsAsync(): TravelDetailsDto {
+    private suspend fun getDetailsAsync(): TravelDetails {
         return coroutineScope {
             val hotelsDeferred = async { fetch<Hotel>("/hotels") }
             val flightsDeferred = async { fetch<Flight>("/flights") }
             val rentalCarsDeferred = async { fetch<RentalCar>("/rentalcars") }
 
-            return@coroutineScope TravelDetailsDto(
+            return@coroutineScope TravelDetails(
                 hotels = hotelsDeferred.await(),
                 flights = flightsDeferred.await(),
                 rentalCars = rentalCarsDeferred.await()
@@ -76,12 +76,12 @@ class TravelService(
      * Get travel details synchronously.
      * @return The travel details.
      */
-    private suspend fun getDetailsSync(): TravelDetailsDto {
+    private suspend fun getDetailsSync(): TravelDetails {
         val hotels = fetch<Hotel>("/hotels")
         val flights = fetch<Flight>("/flights")
         val rentalCars = fetch<RentalCar>("/rentalcars")
 
-        return TravelDetailsDto(
+        return TravelDetails(
             hotels = hotels,
             flights = flights,
             rentalCars = rentalCars
@@ -109,7 +109,7 @@ class TravelService(
      * Get travel details asynchronously.
      * @return The travel details.
      */
-    suspend fun getAsync(): TravelDetailsDto {
+    suspend fun getAsync(): TravelDetails {
         return measureExecutionTime {
             logger.info("Fetching travel details asynchronously from ${gatewayConfig.targetUrl}")
             getDetailsAsync()
@@ -120,7 +120,7 @@ class TravelService(
      * Get travel details synchronously.
      * @return The travel details.
      */
-    suspend fun getSync(): TravelDetailsDto {
+    suspend fun getSync(): TravelDetails {
         return measureExecutionTime {
             logger.info("Fetching travel details synchronously from ${gatewayConfig.targetUrl}")
             getDetailsSync()

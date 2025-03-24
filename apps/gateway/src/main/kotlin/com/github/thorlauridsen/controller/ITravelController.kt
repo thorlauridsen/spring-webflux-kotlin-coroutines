@@ -1,6 +1,6 @@
 package com.github.thorlauridsen.controller
 
-import com.github.thorlauridsen.dto.TravelDetailsDto
+import com.github.thorlauridsen.model.TravelDetails
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -22,7 +22,7 @@ interface ITravelController {
 
     /**
      * Retrieve travel details asynchronously.
-     * @return [TravelDetailsDto].
+     * @return [TravelDetails].
      */
     @GetMapping("/async")
     @Operation(
@@ -33,11 +33,11 @@ interface ITravelController {
         responseCode = "200",
         description = "Successfully retrieved travel details"
     )
-    suspend fun getAsync(): ResponseEntity<TravelDetailsDto>
+    suspend fun getAsync(): ResponseEntity<TravelDetails>
 
     /**
      * Retrieve travel details synchronously.
-     * @return [TravelDetailsDto].
+     * @return [TravelDetails].
      */
     @GetMapping("/sync")
     @Operation(
@@ -48,5 +48,5 @@ interface ITravelController {
         responseCode = "200",
         description = "Successfully retrieved travel details"
     )
-    suspend fun getSync(): ResponseEntity<TravelDetailsDto>
+    suspend fun getSync(): ResponseEntity<TravelDetails>
 }

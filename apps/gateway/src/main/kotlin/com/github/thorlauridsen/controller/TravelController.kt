@@ -1,12 +1,19 @@
 package com.github.thorlauridsen.controller
 
-import com.github.thorlauridsen.dto.TravelDetailsDto
+import com.github.thorlauridsen.model.TravelDetails
 import com.github.thorlauridsen.service.TravelService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 
 /**
- * REST controller for retrieving travel details.
+ * This REST controller consists of endpoints for:
+ * - Fetching travel details asynchronously.
+ * - Fetching travel details synchronously.
+ *
+ * This class implements the [ITravelController] interface and
+ * overrides the methods defined in the interface with implementations.
+ * The controller is responsible for converting data transfer objects to models and vice versa.
+ *
  * @param travelService [TravelService] service layer.
  */
 @Controller
@@ -14,17 +21,17 @@ class TravelController(private val travelService: TravelService) : ITravelContro
 
     /**
      * Retrieves travel details asynchronously.
-     * @return [ResponseEntity] containing [TravelDetailsDto].
+     * @return [ResponseEntity] containing [TravelDetails].
      */
-    override suspend fun getAsync(): ResponseEntity<TravelDetailsDto> {
+    override suspend fun getAsync(): ResponseEntity<TravelDetails> {
         return ResponseEntity.ok(travelService.getAsync())
     }
 
     /**
      * Retrieves travel details synchronously.
-     * @return [ResponseEntity] containing [TravelDetailsDto].
+     * @return [ResponseEntity] containing [TravelDetails].
      */
-    override suspend fun getSync(): ResponseEntity<TravelDetailsDto> {
+    override suspend fun getSync(): ResponseEntity<TravelDetails> {
         return ResponseEntity.ok(travelService.getSync())
     }
 }
