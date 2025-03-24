@@ -25,7 +25,7 @@ interface IRentalCarController {
 
     /**
      * Retrieve all rental cars.
-     * @return List of [RentalCar].
+     * @return [ResponseEntity] with a list of [RentalCar].
      */
     @GetMapping
     @Operation(
@@ -41,7 +41,7 @@ interface IRentalCarController {
     /**
      * Save a rental car.
      * @param rentalCar [RentalCar] to save.
-     * @return Saved [RentalCar].
+     * @return [ResponseEntity] with the saved [RentalCar].
      */
     @PostMapping
     @Operation(

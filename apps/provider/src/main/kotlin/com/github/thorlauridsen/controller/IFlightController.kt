@@ -25,7 +25,7 @@ interface IFlightController {
 
     /**
      * Retrieve all flights.
-     * @return List of [Flight].
+     * @return [ResponseEntity] with a list of [Flight].
      */
     @GetMapping
     @Operation(
@@ -41,7 +41,7 @@ interface IFlightController {
     /**
      * Save a flight.
      * @param flight [Flight] to save.
-     * @return Saved [Flight].
+     * @return [ResponseEntity] with the saved [Flight].
      */
     @PostMapping
     @Operation(

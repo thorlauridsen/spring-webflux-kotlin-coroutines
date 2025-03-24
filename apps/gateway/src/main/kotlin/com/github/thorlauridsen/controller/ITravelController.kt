@@ -22,7 +22,7 @@ interface ITravelController {
 
     /**
      * Retrieve travel details asynchronously.
-     * @return [TravelDetails].
+     * @return [ResponseEntity] with [TravelDetails].
      */
     @GetMapping("/async")
     @Operation(
@@ -37,7 +37,7 @@ interface ITravelController {
 
     /**
      * Retrieve travel details synchronously.
-     * @return [TravelDetails].
+     * @return [ResponseEntity] with [TravelDetails].
      */
     @GetMapping("/sync")
     @Operation(

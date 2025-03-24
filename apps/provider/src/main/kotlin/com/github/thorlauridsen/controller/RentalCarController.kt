@@ -20,7 +20,7 @@ class RentalCarController(private val rentalCarService: RentalCarService) : IRen
 
     /**
      * Retrieve all rental cars.
-     * @return List of [RentalCar].
+     * @return [ResponseEntity] with a list of [RentalCar].
      */
     override suspend fun getAll(): ResponseEntity<List<RentalCar>> {
         val list = rentalCarService.findAll()
@@ -30,7 +30,7 @@ class RentalCarController(private val rentalCarService: RentalCarService) : IRen
     /**
      * Save a rental car.
      * @param rentalCar [RentalCar] to save.
-     * @return Saved [RentalCar].
+     * @return [ResponseEntity] with the saved [RentalCar].
      */
     override suspend fun post(rentalCar: RentalCar): ResponseEntity<RentalCar> {
         val savedRentalCar = rentalCarService.save(rentalCar)

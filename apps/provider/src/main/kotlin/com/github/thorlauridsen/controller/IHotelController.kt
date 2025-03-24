@@ -25,7 +25,7 @@ interface IHotelController {
 
     /**
      * Retrieve all hotels.
-     * @return List of [Hotel].
+     * @return [ResponseEntity] with a list of [Hotel].
      */
     @GetMapping
     @Operation(
@@ -41,7 +41,7 @@ interface IHotelController {
     /**
      * Save a hotel.
      * @param hotel [Hotel] to save.
-     * @return Saved [Hotel].
+     * @return [ResponseEntity] with the saved [Hotel].
      */
     @PostMapping
     @Operation(

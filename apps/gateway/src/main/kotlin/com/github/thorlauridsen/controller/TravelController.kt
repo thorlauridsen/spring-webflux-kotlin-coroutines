@@ -20,7 +20,7 @@ class TravelController(private val travelService: TravelService) : ITravelContro
 
     /**
      * Retrieves travel details asynchronously.
-     * @return [ResponseEntity] containing [TravelDetails].
+     * @return [ResponseEntity] with [TravelDetails].
      */
     override suspend fun getAsync(): ResponseEntity<TravelDetails> {
         return ResponseEntity.ok(travelService.getAsync())
@@ -28,7 +28,7 @@ class TravelController(private val travelService: TravelService) : ITravelContro
 
     /**
      * Retrieves travel details synchronously.
-     * @return [ResponseEntity] containing [TravelDetails].
+     * @return [ResponseEntity] with [TravelDetails].
      */
     override suspend fun getSync(): ResponseEntity<TravelDetails> {
         return ResponseEntity.ok(travelService.getSync())

@@ -20,7 +20,7 @@ class HotelController(private val hotelService: HotelService) : IHotelController
 
     /**
      * Retrieve all hotels.
-     * @return List of [Hotel].
+     * @return [ResponseEntity] with a list of [Hotel].
      */
     override suspend fun getAll(): ResponseEntity<List<Hotel>> {
         val list = hotelService.findAll()
@@ -30,7 +30,7 @@ class HotelController(private val hotelService: HotelService) : IHotelController
     /**
      * Save a hotel.
      * @param hotel [Hotel] to save.
-     * @return Saved [Hotel].
+     * @return [ResponseEntity] with the saved [Hotel].
      */
     override suspend fun post(hotel: Hotel): ResponseEntity<Hotel> {
         val savedHotel = hotelService.save(hotel)
