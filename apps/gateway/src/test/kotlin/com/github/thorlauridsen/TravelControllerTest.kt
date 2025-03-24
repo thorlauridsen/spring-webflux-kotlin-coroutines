@@ -2,7 +2,7 @@ package com.github.thorlauridsen
 
 import com.github.thorlauridsen.controller.TRAVEL_BASE_ENDPOINT
 import com.github.thorlauridsen.controller.TravelController
-import com.github.thorlauridsen.dto.TravelDetailsDto
+import com.github.thorlauridsen.model.TravelDetails
 import com.github.thorlauridsen.service.TravelService
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
@@ -36,30 +36,30 @@ class TravelControllerTest(
     @Test
     fun `get travel details async - success`() {
         runTest {
-            Mockito.`when`(travelService.getAsync()).thenReturn(TravelTestData.travelDetailsDto)
+            Mockito.`when`(travelService.getAsync()).thenReturn(TravelTestData.travelDetails)
 
             webTestClient.get()
                 .uri("$TRAVEL_BASE_ENDPOINT/async")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk
-                .expectBody(TravelDetailsDto::class.java)
-                .isEqualTo(TravelTestData.travelDetailsDto)
+                .expectBody(TravelDetails::class.java)
+                .isEqualTo(TravelTestData.travelDetails)
         }
     }
 
     @Test
     fun `get travel details sync - success`() {
         runTest {
-            Mockito.`when`(travelService.getSync()).thenReturn(TravelTestData.travelDetailsDto)
+            Mockito.`when`(travelService.getSync()).thenReturn(TravelTestData.travelDetails)
 
             webTestClient.get()
                 .uri("$TRAVEL_BASE_ENDPOINT/sync")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk
-                .expectBody(TravelDetailsDto::class.java)
-                .isEqualTo(TravelTestData.travelDetailsDto)
+                .expectBody(TravelDetails::class.java)
+                .isEqualTo(TravelTestData.travelDetails)
         }
     }
 }

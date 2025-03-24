@@ -3,10 +3,10 @@ package com.github.thorlauridsen
 import com.github.thorlauridsen.model.Flight
 import com.github.thorlauridsen.model.Hotel
 import com.github.thorlauridsen.model.RentalCar
-import com.github.thorlauridsen.dto.TravelDetailsDto
+import com.github.thorlauridsen.model.TravelDetails
 
 /**
- * Singleton object containing test data for [TravelDetailsDto].
+ * Singleton object containing test data for [TravelDetails].
  */
 object TravelTestData {
 
@@ -28,7 +28,7 @@ object TravelTestData {
         RentalCar(company = "Company C", carModel = "Car model C", location = "Location C")
     )
 
-    val travelDetailsDto = TravelDetailsDto(
+    val travelDetails = TravelDetails(
         flights = flights,
         hotels = hotels,
         rentalCars = rentalCars
