@@ -6,10 +6,12 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 
 /**
- * REST controller for rental cars.
- * This controller consists of endpoints for:
+ * This REST controller consists of endpoints for:
+ * - Retrieving all rental cars.
  * - Saving rental cars.
- * - Fetching rental cars.
+ *
+ * This class implements the [IRentalCarController] interface and
+ * overrides the methods defined in the interface with implementations.
  *
  * @param rentalCarService [RentalCarService] service layer.
  */

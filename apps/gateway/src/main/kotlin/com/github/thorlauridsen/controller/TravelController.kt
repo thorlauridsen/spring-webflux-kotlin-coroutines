@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller
  *
  * This class implements the [ITravelController] interface and
  * overrides the methods defined in the interface with implementations.
- * The controller is responsible for converting data transfer objects to models and vice versa.
  *
  * @param travelService [TravelService] service layer.
  */

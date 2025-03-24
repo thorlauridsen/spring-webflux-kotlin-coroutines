@@ -6,10 +6,12 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 
 /**
- * REST controller for hotels.
- * This controller consists of endpoints for:
+ * This REST controller consists of endpoints for:
+ * - Retrieving all hotels.
  * - Saving hotels.
- * - Fetching hotels.
+ *
+ * This class implements the [IHotelController] interface and
+ * overrides the methods defined in the interface with implementations.
  *
  * @param hotelService [HotelService] service layer.
  */

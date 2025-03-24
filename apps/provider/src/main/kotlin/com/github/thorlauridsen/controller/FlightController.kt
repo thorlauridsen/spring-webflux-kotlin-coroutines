@@ -6,10 +6,12 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 
 /**
- * REST controller for flights.
- * This controller consists of endpoints for:
+ * This REST controller consists of endpoints for:
+ * - Retrieving all flights.
  * - Saving flights.
- * - Fetching flights.
+ *
+ * This class implements the [IFlightController] interface and
+ * overrides the methods defined in the interface with implementations.
  *
  * @param flightService [FlightService] service layer.
  */
