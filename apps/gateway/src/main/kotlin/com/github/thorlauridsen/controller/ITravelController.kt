@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 const val TRAVEL_BASE_ENDPOINT = "/travel"
 
 /**
- * Interface for [TravelController].
+ * Travel controller interface.
  * This interface defines the endpoints for the travel controller.
- * It also defines useful information for generating the Swagger documentation.
+ * It also defines the operations which will be used in the OpenAPI documentation.
+ * The purpose with this interface is to separate the controller definition from the implementation.
  */
 @Tag(name = "Travel Controller", description = "API for retrieving travel information")
 @RequestMapping(TRAVEL_BASE_ENDPOINT)
@@ -21,7 +22,7 @@ interface ITravelController {
 
     /**
      * Retrieve travel details asynchronously.
-     * @return [TravelDetailsDto]
+     * @return [TravelDetailsDto].
      */
     @GetMapping("/async")
     @Operation(
@@ -36,7 +37,7 @@ interface ITravelController {
 
     /**
      * Retrieve travel details synchronously.
-     * @return [TravelDetailsDto]
+     * @return [TravelDetailsDto].
      */
     @GetMapping("/sync")
     @Operation(

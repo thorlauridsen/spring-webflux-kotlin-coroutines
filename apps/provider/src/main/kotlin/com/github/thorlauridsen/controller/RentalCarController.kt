@@ -17,8 +17,8 @@ import org.springframework.stereotype.Controller
 class RentalCarController(private val rentalCarService: RentalCarService) : IRentalCarController {
 
     /**
-     * Retrieve all rental cars
-     * @return List of [RentalCar]
+     * Retrieve all rental cars.
+     * @return List of [RentalCar].
      */
     override suspend fun getAll(): ResponseEntity<List<RentalCar>> {
         val list = rentalCarService.findAll()
@@ -28,7 +28,7 @@ class RentalCarController(private val rentalCarService: RentalCarService) : IRen
     /**
      * Save a rental car.
      * @param rentalCar [RentalCar] to save.
-     * @return Saved [RentalCar]
+     * @return Saved [RentalCar].
      */
     override suspend fun post(rentalCar: RentalCar): ResponseEntity<RentalCar> {
         val savedRentalCar = rentalCarService.save(rentalCar)

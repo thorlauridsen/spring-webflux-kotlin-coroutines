@@ -17,8 +17,8 @@ import org.springframework.stereotype.Controller
 class FlightController(private val flightService: FlightService) : IFlightController {
 
     /**
-     * Retrieve all flights
-     * @return List of [Flight]
+     * Retrieve all flights.
+     * @return List of [Flight].
      */
     override suspend fun getAll(): ResponseEntity<List<Flight>> {
         val list = flightService.findAll()
@@ -28,7 +28,7 @@ class FlightController(private val flightService: FlightService) : IFlightContro
     /**
      * Save a flight.
      * @param flight [Flight] to save.
-     * @return Saved [Flight]
+     * @return Saved [Flight].
      */
     override suspend fun post(flight: Flight): ResponseEntity<Flight> {
         val savedFlight = flightService.save(flight)

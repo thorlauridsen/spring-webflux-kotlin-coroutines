@@ -14,17 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping
 const val RENTAL_CAR_BASE_ENDPOINT = "/rentalcars"
 
 /**
- * Interface for [RentalCarController].
+ * Rental car controller interface.
  * This interface defines the endpoints for the rental car controller.
- * It also defines useful information for generating the Swagger documentation.
+ * It also defines the operations which will be used in the OpenAPI documentation.
+ * The purpose with this interface is to separate the controller definition from the implementation.
  */
 @Tag(name = "Rental Car Controller", description = "API for managing rental cars")
 @RequestMapping(RENTAL_CAR_BASE_ENDPOINT)
 interface IRentalCarController {
 
     /**
-     * Retrieve all rental cars
-     * @return List of [RentalCar]
+     * Retrieve all rental cars.
+     * @return List of [RentalCar].
      */
     @GetMapping
     @Operation(
@@ -40,7 +41,7 @@ interface IRentalCarController {
     /**
      * Save a rental car.
      * @param rentalCar [RentalCar] to save.
-     * @return Saved [RentalCar]
+     * @return Saved [RentalCar].
      */
     @PostMapping
     @Operation(
