@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service
  * - Saving flights.
  * - Fetching flights.
  *
- * @param flightRepo Exposed [IFlightRepo] to interact with the database.
+ * @param flightRepo [IFlightRepo] to interact with the database.
  */
 @Service
 class FlightService(private val flightRepo: IFlightRepo) {

@@ -56,7 +56,15 @@ class TravelService(
 
     /**
      * Get travel details asynchronously.
-     * @return The travel details.
+     *
+     * This will initiate three asynchronous requests
+     * to fetch data from the three different endpoints.
+     * The requests will be executed concurrently using coroutines.
+     *
+     * Each async block will fetch data from one of the endpoints.
+     * Then we use .await() on each deferred object to get the result.
+     *
+     * @return [TravelDetails] containing the fetched data.
      */
     private suspend fun getDetailsAsync(): TravelDetails {
         return coroutineScope {
@@ -74,7 +82,11 @@ class TravelService(
 
     /**
      * Get travel details synchronously.
-     * @return The travel details.
+     *
+     * Since we are not using coroutines here, the requests will be executed sequentially.
+     * This means we will wait for the response from one endpoint before fetching the next.
+     *
+     * @return [TravelDetails] containing the fetched data.
      */
     private suspend fun getDetailsSync(): TravelDetails {
         val hotels = fetch<Hotel>("/hotels")
@@ -107,7 +119,7 @@ class TravelService(
 
     /**
      * Get travel details asynchronously.
-     * @return The travel details.
+     * @return [TravelDetails] containing the fetched data.
      */
     suspend fun getAsync(): TravelDetails {
         return measureExecutionTime {
@@ -118,7 +130,7 @@ class TravelService(
 
     /**
      * Get travel details synchronously.
-     * @return The travel details.
+     * @return [TravelDetails] containing the fetched data.
      */
     suspend fun getSync(): TravelDetails {
         return measureExecutionTime {

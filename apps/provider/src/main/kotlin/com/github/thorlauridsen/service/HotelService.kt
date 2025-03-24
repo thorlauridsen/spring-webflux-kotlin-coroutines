@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service
  * - Saving hotels.
  * - Fetching hotels.
  *
- * @param hotelRepo Exposed [IHotelRepo] to interact with the database.
+ * @param hotelRepo [IHotelRepo] to interact with the database.
  */
 @Service
 class HotelService(private val hotelRepo: IHotelRepo) {

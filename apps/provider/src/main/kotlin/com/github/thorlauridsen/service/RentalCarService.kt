@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service
  * - Saving rental cars.
  * - Fetching rental cars.
  *
- * @param rentalCarRepo Exposed [IRentalCarRepo] to interact with the database.
+ * @param rentalCarRepo [IRentalCarRepo] to interact with the database.
  */
 @Service
 class RentalCarService(private val rentalCarRepo: IRentalCarRepo) {
