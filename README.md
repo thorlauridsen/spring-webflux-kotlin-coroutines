@@ -43,8 +43,8 @@ for database changelogs, where dummy data has been added to the database.
 ### Gateway REST API
 The **gateway** subproject is independently runnable and will spin up a Spring Boot REST API.
 This service includes the following endpoints:
-- `GET /travel/async`
-- `GET /travel/sync`
+- `GET /travel/details/async`
+- `GET /travel/details/sync`
 
 For this project, we use Spring WebFlux and Kotlin Coroutines so we can achieve optimized performance.
 
