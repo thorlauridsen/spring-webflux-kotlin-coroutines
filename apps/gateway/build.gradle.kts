@@ -16,7 +16,6 @@ dependencies {
 	// Reactor is required for Spring Boot controller suspend endpoints
 	implementation(local.kotlin.coroutines)
 	implementation(local.kotlin.coroutines.reactor)
-	testImplementation(local.kotlin.coroutines.test)
 
 	// Springdoc for swagger docs supporting Spring WebFlux
 	implementation(local.springdoc.openapi.starter.webflux)
@@ -27,6 +26,7 @@ dependencies {
 	// Test dependencies
 	testImplementation(local.springboot.starter.test)
 	testImplementation(local.kotlin.test.junit5)
+	testImplementation(local.kotlin.coroutines.test)
 	testRuntimeOnly(local.junit.platform.launcher)
 }
 
