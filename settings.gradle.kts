@@ -1,4 +1,4 @@
-rootProject.name = "sample"
+rootProject.name = "spring-webflux-kotlin-coroutines"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
