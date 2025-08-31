@@ -27,6 +27,7 @@ dependencies {
 	testImplementation(local.springboot.starter.test)
 	testImplementation(local.kotlin.test.junit5)
 	testImplementation(local.kotlin.coroutines.test)
+	testImplementation(local.wiremock)
 	testRuntimeOnly(local.junit.platform.launcher)
 }
 

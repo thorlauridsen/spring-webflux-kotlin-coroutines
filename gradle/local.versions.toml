@@ -10,6 +10,7 @@ postgres = "42.7.7"
 springboot = "3.5.5"
 springDependencyPlugin = "1.1.7"
 springdoc = "2.8.11"
+wiremock = '3.13.1'
 
 [libraries]
 # JetBrains Exposed provides a lightweight Kotlin SQL library
@@ -43,6 +44,9 @@ springboot-starter-test = { module = "org.springframework.boot:spring-boot-start
 
 # Springdoc provides swagger docs with support for Spring WebFlux
 springdoc-openapi-starter-webflux = { module = "org.springdoc:springdoc-openapi-starter-webflux-ui", version.ref = "springdoc" }
+
+# WireMock for mocking HTTP services in tests
+wiremock = { module = 'org.wiremock:wiremock-standalone', version.ref = 'wiremock' }
 
 [plugins]
 springboot = { id = "org.springframework.boot", version.ref = "springboot" }
