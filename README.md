@@ -184,6 +184,7 @@ and http://localhost:8081/ to view the Swagger documentation for each service.
 - [PostgreSQL](https://www.postgresql.org/) - Open-source relational database
 - [H2database](https://github.com/h2database/h2database) - Provides an in-memory database for simple local testing
 - [Liquibase](https://github.com/liquibase/liquibase) - Used to manage database schema changelogs
+- [WireMock](https://github.com/wiremock/wiremock) - For mocking HTTP services in tests
 
 ## Gradle best practices for Kotlin
 [kotlinlang.org](https://kotlinlang.org/docs/gradle-best-practices.html)
