@@ -40,6 +40,6 @@ dependencies {
 	testRuntimeOnly(local.junit.platform.launcher)
 }
 
-tasks.withType<Test> {
+tasks.test {
 	useJUnitPlatform()
 }
