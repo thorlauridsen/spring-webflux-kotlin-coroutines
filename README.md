@@ -15,7 +15,7 @@ This could for example include offers such as:
 - Hotels
 - Rental cars
 
-You find a third-party service provider for each type of offer but you are forced
+You find a third-party service provider for each type of offer, but you are forced
 to send 3 requests to fetch all the relevant offers before returning it to the client.
 The issue here is that with synchronous code, you would have to execute one
 request at a time which could result in a slow response time.
@@ -71,9 +71,9 @@ suspending functions. This means that every time a request is sent to an endpoin
 a coroutine will be launched for the specific request. This allows us to be
 within a coroutine scope when executing requests. Additionally, Spring WebFlux
 provides [WebClient](https://docs.spring.io/spring-framework/reference/web/webflux-webclient.html)
-which is a HTTP client based on Reactor to support asynchronous code.
+which is an HTTP client based on Reactor to support asynchronous code.
 
-The code below from [TravelService.kt](/apps\gateway/src/main/kotlin/com/github/thorlauridsen/service/TravelService.kt)
+The code below from [TravelService.kt](/apps/gateway/src/main/kotlin/com/github/thorlauridsen/service/TravelService.kt)
 showcases how to use `async {}` and `.await()` to execute 3 requests simultaneously.
 
 ```kotlin
@@ -120,7 +120,7 @@ private suspend fun getDetailsSync(): TravelDetailsDto {
     )
 }
 ```
-The project has Gradle depedencies for Kotlin Coroutines and
+The project has Gradle dependencies for Kotlin Coroutines and
 Spring WebFlux which allows us to set the controller functions
 to suspending functions. However, this is not enough in itself
 to achieve optimized performance. If we do not use async/await
