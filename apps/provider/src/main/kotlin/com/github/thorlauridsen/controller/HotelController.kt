@@ -3,7 +3,7 @@ package com.github.thorlauridsen.controller
 import com.github.thorlauridsen.model.Hotel
 import com.github.thorlauridsen.service.HotelService
 import org.springframework.http.ResponseEntity
-import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.RestController
 
 /**
  * This REST controller consists of endpoints for:
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller
  *
  * @param hotelService [HotelService] service layer.
  */
-@Controller
+@RestController
 class HotelController(private val hotelService: HotelService) : IHotelController {
 
     /**
