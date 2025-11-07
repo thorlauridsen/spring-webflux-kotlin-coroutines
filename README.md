@@ -173,7 +173,7 @@ Once both services is running, you can navigate to http://localhost:8080/
 and http://localhost:8081/ to view the Swagger documentation for each service.
 
 ## Technology
-- [JDK21](https://openjdk.org/projects/jdk/21/) - Latest JDK with long-term support 
+- [JDK25](https://openjdk.org/projects/jdk/25/) - Latest JDK with long-term support
 - [Kotlin](https://github.com/JetBrains/kotlin) - Programming language with Java interoperability
 - [Gradle](https://github.com/gradle/gradle) - Used for compilation, building, testing and dependency management
 - [Spring WebFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html) - For creating reactive REST APIs
