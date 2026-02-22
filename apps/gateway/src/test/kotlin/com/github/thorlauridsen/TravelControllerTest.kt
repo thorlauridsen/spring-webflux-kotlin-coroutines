@@ -1,6 +1,5 @@
 package com.github.thorlauridsen
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.thorlauridsen.controller.TRAVEL_BASE_ENDPOINT
 import com.github.thorlauridsen.controller.TravelController
 import com.github.thorlauridsen.model.TravelDetails
@@ -14,11 +13,12 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.TestInstance.Lifecycle
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.webtestclient.autoconfigure.AutoConfigureWebTestClient
 import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.web.reactive.server.WebTestClient
+import tools.jackson.databind.json.JsonMapper
 
 /**
  * Tests for [TravelController].
@@ -37,7 +37,7 @@ import org.springframework.test.web.reactive.server.WebTestClient
 @TestInstance(Lifecycle.PER_CLASS)
 class TravelControllerTest(
     @Autowired private val webTestClient: WebTestClient,
-    @Autowired private val objectMapper: ObjectMapper,
+    @Autowired private val jsonMapper: JsonMapper,
 ) {
 
     private val wireMock: WireMockServer = WireMockServer(9561)
@@ -54,9 +54,9 @@ class TravelControllerTest(
     }
 
     fun setupWireMockStubs() {
-        val hotels = objectMapper.writeValueAsString(TravelTestData.hotels)
-        val flights = objectMapper.writeValueAsString(TravelTestData.flights)
-        val rentalCars = objectMapper.writeValueAsString(TravelTestData.rentalCars)
+        val hotels = jsonMapper.writeValueAsString(TravelTestData.hotels)
+        val flights = jsonMapper.writeValueAsString(TravelTestData.flights)
+        val rentalCars = jsonMapper.writeValueAsString(TravelTestData.rentalCars)
 
         wireMock.stubFor(get("/hotels").willReturn(okJson(hotels)))
         wireMock.stubFor(get("/flights").willReturn(okJson(flights)))

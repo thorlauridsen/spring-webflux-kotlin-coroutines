@@ -23,8 +23,12 @@ dependencies {
 	// FasterXML Jackson module for Kotlin support
 	implementation(local.jackson.module.kotlin)
 
+	// Kotlin Reflection
+	runtimeOnly(local.kotlin.reflect)
+
 	// Test dependencies
 	testImplementation(local.springboot.starter.test)
+	testImplementation(local.springboot.webtestclient)
 	testImplementation(local.kotlin.test.junit5)
 	testImplementation(local.kotlin.coroutines.test)
 	testImplementation(local.wiremock)

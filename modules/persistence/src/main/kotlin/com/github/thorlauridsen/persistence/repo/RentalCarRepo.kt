@@ -3,10 +3,11 @@ package com.github.thorlauridsen.persistence.repo
 import com.github.thorlauridsen.model.IRentalCarRepo
 import com.github.thorlauridsen.model.RentalCar
 import com.github.thorlauridsen.persistence.table.RentalCarTable
-import org.jetbrains.exposed.sql.ResultRow
-import org.jetbrains.exposed.sql.insertAndGetId
-import org.jetbrains.exposed.sql.selectAll
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
+import org.jetbrains.exposed.v1.core.ResultRow
+import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.jdbc.insertAndGetId
+import org.jetbrains.exposed.v1.jdbc.selectAll
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Repository
 import java.util.UUID

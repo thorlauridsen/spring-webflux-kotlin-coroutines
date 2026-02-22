@@ -11,6 +11,7 @@ dependencies {
 
 	// Spring Boot dependencies
 	implementation(local.springboot.starter)
+	implementation(local.springboot.starter.liquibase)
 	implementation(local.springboot.starter.webflux)
 
 	// Kotlin Coroutines
@@ -24,8 +25,8 @@ dependencies {
 	// FasterXML Jackson module for Kotlin support
 	implementation(local.jackson.module.kotlin)
 
-	// Liquibase for database migrations
-	runtimeOnly(local.liquibase.core)
+	// Kotlin Reflection
+	runtimeOnly(local.kotlin.reflect)
 
 	// H2 in-memory database
 	runtimeOnly(local.h2database)
@@ -35,6 +36,7 @@ dependencies {
 
 	// Test dependencies
 	testImplementation(local.springboot.starter.test)
+	testImplementation(local.springboot.webtestclient)
 	testImplementation(local.kotlin.test.junit5)
 	testImplementation(local.kotlin.coroutines.test)
 	testRuntimeOnly(local.junit.platform.launcher)
