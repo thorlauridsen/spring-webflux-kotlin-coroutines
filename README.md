@@ -52,9 +52,9 @@ This means we need the following Gradle dependencies in our local version catalo
 [local.versions.toml](gradle/local.versions.toml)
 ```toml
 [versions]
-coroutines = "1.10.1"
-springboot = "3.4.3"
-springdoc = "2.8.5"
+coroutines = "1.10.2"
+springboot = "4.0.3"
+springdoc = "3.0.1"
 
 [libraries]
 springboot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springboot" }
