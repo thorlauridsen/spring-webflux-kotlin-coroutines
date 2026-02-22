@@ -1,46 +1,47 @@
 [versions]
 coroutines = "1.10.2"
-exposed = "0.61.0"
+exposed = "1.0.0"
 h2database = "2.4.240"
-jackson = "2.21.0"
-junit-platform-launcher = "1.12.2"
+jackson = "3.0.4"
+junit-platform-launcher = "6.0.1"
 kotlin = "2.3.10"
-liquibase = "5.0.1"
 postgres = "42.7.10"
-springboot = "3.5.11"
+springboot = "4.0.3"
 spring-dependency-plugin = "1.1.7"
-springdoc = "2.8.15"
+springdoc = "3.0.1"
 wiremock = '3.13.2'
 
 [libraries]
 # JetBrains Exposed provides a lightweight Kotlin SQL library
-exposed-springboot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot-starter", version.ref = "exposed" }
+exposed-springboot-starter = { module = "org.jetbrains.exposed:exposed-spring-boot4-starter", version.ref = "exposed" }
 
 # H2 for in-memory database
 h2database = { module = "com.h2database:h2", version.ref = "h2database" }
 
 # FasterXML Jackson module for Kotlin support
-jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+jackson-module-kotlin = { module = "tools.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 
 # Test libraries
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
 kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
+
+# Kotlin Reflection
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 # Kotlin Coroutines
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlin-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "coroutines" }
 
-# Liquibase for managing database changelogs
-liquibase-core = { module = "org.liquibase:liquibase-core", version.ref = "liquibase" }
-
 # PostgreSQL for live database
 postgres = { module = "org.postgresql:postgresql", version.ref = "postgres" }
 
 # Spring Boot libraries
 springboot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springboot" }
-springboot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "springboot" }
+springboot-starter-liquibase = { module = "org.springframework.boot:spring-boot-starter-liquibase", version.ref = "springboot" }
 springboot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springboot" }
+springboot-starter-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux", version.ref = "springboot" }
+springboot-webtestclient = { module = "org.springframework.boot:spring-boot-webtestclient", version.ref = "springboot" }
 
 # Springdoc provides swagger docs with support for Spring WebFlux
 springdoc-openapi-starter-webflux = { module = "org.springdoc:springdoc-openapi-starter-webflux-ui", version.ref = "springdoc" }
