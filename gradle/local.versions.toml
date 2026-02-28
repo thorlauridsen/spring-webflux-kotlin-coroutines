@@ -2,7 +2,7 @@
 coroutines = "1.10.2"
 exposed = "1.0.0"
 h2database = "2.4.240"
-jackson = "3.0.4"
+jackson = "3.1.0"
 junit-platform-launcher = "6.0.3"
 kotlin = "2.3.10"
 postgres = "42.7.10"
